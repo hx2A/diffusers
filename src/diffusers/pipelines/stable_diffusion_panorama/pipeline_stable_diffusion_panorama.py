@@ -1112,10 +1112,10 @@ class StableDiffusionPanoramaPipeline(
                         if circular_padding and w_end > latents.shape[3]:
                             # Case for circular padding
                             value[:, :, h_start:h_end, w_start:] += latents_view_denoised[
-                                :, :, h_start:h_end, : latents.shape[3] - w_start
+                                :, :, :, : latents.shape[3] - w_start
                             ]
                             value[:, :, h_start:h_end, : w_end - latents.shape[3]] += latents_view_denoised[
-                                :, :, h_start:h_end, latents.shape[3] - w_start :
+                                :, :, :, latents.shape[3] - w_start :
                             ]
                             count[:, :, h_start:h_end, w_start:] += 1
                             count[:, :, h_start:h_end, : w_end - latents.shape[3]] += 1
